@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <title>Play</title>
+   <link rel="stylesheet" href="styles.css" />
+   <style>
+   
+h1 {text-align: center;}
+
+body {background-color: #8f9ba5;}
+
+   .sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #733380;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #733380;
+  overflow-x: hidden;
+  padding-top: 20px;
+  max-width: 100px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+}
+
+.sidenav a:hover:not(.active) {
+  background-color: white;
+}
+
+.sidenav a.active {
+  background-color: grey;
+}
+
+a style {text-align: center;}
+   </style>
+<script src="modernizr.custom.65897.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+   <header>
+      <h1>Play</h1>
+   </header>
+<div class="sidenav">
+  <a href="index.html"><img src="houseicon.svg" "alt="home"></a>
+  <a href="game.html"><img src="gameicon.svg" "alt="game"></a>
+  <a class="active" href="play.html"><img src="play.svg" "alt="play"></a>
+  <a href="cart.html"><img src="cart.svg" "alt="cart"></a>
+  <a href="security.html"><img src="security.svg" "alt="sevurity"></a>
+  <a href="ch6.html"><img src="ch6.svg" "alt="chapter 6 case study"></a>
+  <a href="ch7.html"><img src="ch7.svg" "alt="chapter 7 case study"></a>
+  <a href="feedback.html"><img src="feedback.svg" "alt="chapter 8 case study"></a>
+</div>
+<main>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada fames ac turpis. Sed viverra ipsum nunc aliquet bibendum. Pulvinar mattis nunc sed blandit libero. Eget mi proin sed libero enim.<br><br>
+                    Mollis nunc sed id semper risus in hendrerit gravida. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Odio tempor orci dapibus ultrices in. Ultrices vitae auctor eu augue ut lectus. Pulvinar mattis nunc sed blandit libero volutpat.
+                    </p>
+                    <br>
+                    <div>
+                    <h4 align="center">Simple 4-function calculator</h4>
+                    
+                    
+                    <!-- Adding calculator as a form function -->
+      <form name="fourFunctCalculator" >
+	  <!-- Adding tables that will act as the buttons and display the keypad numbers, operators values, and an onclick element to make them work -->
+         <table class="calcTable" align="center"> <!-- Added a name for the table calculator class to make it easier to modify css file -->
+         <tr>
+         <td colspan="4"> <!-- Adding column that is 4 columns high-->
+         <input type="text" name="display" id="display" disabled>
+         </td>
+         </tr>
+         <tr>
+         <td>
+		 <input type="button" name="one" value="1" onclick="fourFunctCalculator.display.value += '1'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 1,      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="two" value="2" onclick="fourFunctCalculator.display.value += '2'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 2,      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="three" value="3" onclick="fourFunctCalculator.display.value += '3'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 3      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" class="operator" name="division" value="/" onclick="fourFunctCalculator.display.value += '/'">  <!-- Adding onclick event and assigning it to the calculator display value      to show the division symbol, and to activate it when clicked -->
+		 </td>
+         </tr>
+         <tr>
+         <td>
+		 <input type="button" name="four" value="4" onclick="fourFunctCalculator.display.value += '4'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 4,      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="five" value="5" onclick="fourFunctCalculator.display.value += '5'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 5,      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="six" value="6" onclick="fourFunctCalculator.display.value += '6'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 6,      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" class="operator" name="multiplication" value="x" onclick="fourFunctCalculator.display.value += '*'">  <!-- Adding onclick event and assigning it to the calculator display      value to show the multiplication symbol, and to activate it when clicked -->
+		 </td>
+         </tr>
+         <tr>
+         <td>
+		 <input type="button" name="seven" value="7" onclick="fourFunctCalculator.display.value += '7'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 7      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="eight" value="8" onclick="fourFunctCalculator.display.value += '8'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 8      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="nine" value="9" onclick="fourFunctCalculator.display.value += '9'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 9,      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" class="operator" name="subtraction" value="-" onclick="fourFunctCalculator.display.value += '-'">  <!-- Adding onclick event and assigning it to the calculator display         value to show the subtraction symbol, and to activate it when clicked -->
+		 </td>
+         </tr>
+         <tr>
+         <td>
+		 <input type="button" id="clear" name="clear" value="C" onclick="fourFunctCalculator.display.value = ''">  <!-- Adding onclick event and assigning it to the calculator display value to show the      clear symbol, and to activate it when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="zero" value="0" onclick="fourFunctCalculator.display.value += '0'">  <!-- Adding onclick event and assigning it to the calculator display value to show the number 0,      and add this number when clicked -->
+		 </td>
+         <td>
+		 <input type="button" name="equals" value="=" onclick="fourFunctCalculator.display.value = eval(fourFunctCalculator.display.value)"> <!-- Assign onclick event to display the results-->
+		 </td>
+         <td>
+		 <input type="button" class="operator" name="addition" value="+" onclick="fourFunctCalculator.display.value += '+'">  <!-- Adding onclick event and assigning it to the calculator display value to show the addition symbol, and to activate it when clicked -->
+		 </td>
+         </tr>
+         </table>
+         </form>
+         </div>
+         <br>
+         
+   <br>
+
+                
+            </main>
+            <footer>
+                Copyright&copy;2020 Alex Hernandez
+            </footer>
+            </div>
+<script src="final.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Security</title>
+    <link rel="stylesheet" href="styles.css" />
+   <style>
+   
+h1 {text-align: center;}
+
+body {background-color: #8f9ba5;}
+
+   .sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #733380;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #733380;
+  overflow-x: hidden;
+  padding-top: 20px;
+  max-width: 100px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+}
+
+.sidenav a:hover:not(.active) {
+  background-color: white;
+}
+
+.sidenav a.active {
+  background-color: grey;
+}
+
+h2 {font-size: 150%;
+text-align: center;}
+
+
+p {margin-left: auto;
+  text-align: center;
+}
+
+a style {text-align: center;}
+   </style>
+    <script src="modernizr.custom.65897.js"></script>
+</head>
+
+<body>
+<div id="wrapper">
+<header>
+<h1>Web Security</h1>
+</header>
+
+<div class="sidenav">
+  <a href="index.html"><img src="houseicon.svg" "alt="home"></a>
+  <a href="game.html"><img src="gameicon.svg" "alt="game"></a>
+  <a href="play.html"><img src="play.svg" "alt="play"></a>
+  <a href="cart.html"><img src="cart.svg" "alt="cart"></a>
+  <a class="active" href="security.html"><img src="security.svg" "alt="sevurity"></a>
+  <a href="ch6.html"><img src="ch6.svg" "alt="chapter 6 case study"></a>
+  <a href="ch7.html"><img src="ch7.svg" "alt="chapter 7 case study"></a>
+  <a href="feedback.html"><img src="feedback.svg" "alt="chapter 8 case study"></a>
+</div>
+    
+
+ 
+        <div class="card" style="background-color:#818181;">
+            <h2>Javascript Security</h2>
+            <p>Setting up proper browser security is important in keeping your personal information safe while browsing the internet.
+            <br>
+            We recommend installing the following browser plugins to better manage your browser security</p>
+            <ul id = "securityInfor">
+                <li>Block unwanted ads with uBlock <a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en">Chrome</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">Firefox</a></li>
+                <li>Stop javascript from running automatically <a href="https://chrome.google.com/webstore/detail/scriptsafe/oiigbmnaadbkfbmpbfijlflahbdbdgdf?hl=en-US">Chrome</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/noscript/">Firefox</a></li>
+                <li>Restrict tracking cookies from sending your browsing data around the web <a href="https://chrome.google.com/webstore/detail/ghostery-%E2%80%93-privacy-ad-blo/mlomiejdfkolichcflejclcbmpeaniij?hl=en">Chrome</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/ghostery/">Firefox</a></li>
+            </ul>
+</div>
+
+        <div class="card" style="background-color:#818181;">
+        <h2>Geolocation Data</h2>
+        <ul id = "geoData"></ul>
+</div>
+
+        <div id="security" class="card" style="background-color:#818181;">
+            <h2>Computer Information</h2>
+            <ul id="navigator">
+
+            </ul>
+</div>
+
+
+
+
+            <footer>
+                Copyright&copy;2020 Alex Hernandez
+            </footer>
+            </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="final.js"></script>
+<script>
+    var navigatorList = "<li>";
+    var str = "";
+
+    function navigators(){
+        var list = document.getElementById("navigator");
+        for(var property in navigator){
+            str = "<b>" + property + ":</b> " + navigator[property];
+            navigatorList = navigatorList + str + "</li><li>"
+        }
+        list.innerHTML = navigatorList;
+    }
+    function geoData() {
+        /*
+        *
+        * This function using the ip-api service to get user information
+        * if you have ublock or adblock installed this call will most likely fail and will display
+        *
+         */
+        var request = new XMLHttpRequest();
+        var geoList = "<li>";
+        var string = "";
+        request.open('GET', 'http://ip-api.com/json?callback=', true);
+
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+                // Success!
+                var data = JSON.parse(request.responseText);
+                for(var prop in data) {
+                    string = "<b>" + prop + ":</b> " + data[prop];
+                    geoList = geoList + string + " </li><li>";
+                }
+                document.getElementById("geoData").innerHTML = geoList;
+            } else {
+                // We reached our target server, but it returned an error
+                console.log("connected error");
+                document.getElementById("geoData").innerHTML = "You are blocking Geo Location Data.  Good work!"
+
+
+            }
+        };
+
+        request.onerror = function() {
+            // There was a connection error of some sort
+            console.log("connection error");
+            document.getElementById("geoData").innerHTML = "You are blocking Geo Location Data.  Good work!"
+
+
+        };
+
+        request.send();
+    }
+    navigators();
+    geoData();
+</script>
+</body>
+
+</html>

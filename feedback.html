@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css" />
+<script src="modernizr.custom.65897.js"></script>
+    <title>Feedback Form</title>
+<style>
+
+
+
+
+#content {
+    background-color: #818181;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    height: auto;
+}
+
+
+
+
+h1 {text-align: center;}
+
+body {background-color: #8f9ba5;}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #733380;
+  overflow-x: hidden;
+  padding-top: 20px;
+  max-width: 100px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+}
+
+.sidenav a:hover:not(.active) {
+  background-color: white;
+}
+
+.sidenav a.active {
+  background-color: grey;
+}
+
+
+
+
+
+a style {text-align: center;}
+
+
+
+</style>
+
+</head>
+
+<body>
+<div class="wrapper">
+  <header>
+  <h1>Feedback Form</h1>
+</header>
+
+<div class="sidenav">
+  <a href="index.html"><img src="houseicon.svg" "alt="home"></a>
+  <a href="game.html"><img src="gameicon.svg" "alt="game"></a>
+  <a href="play.html"><img src="play.svg" "alt="play"></a>
+  <a href="cart.html"><img src="cart.svg" "alt="cart"></a>
+  <a href="security.html"><img src="security.svg" "alt="sevurity"></a>
+  <a href="ch6.html"><img src="ch6.svg" "alt="chapter 6 case study"></a>
+  <a href="ch7.html"><img src="ch7.svg" "alt="chapter 7 case study"></a>
+  <a class="active" href="feedback.html"><img src="ch7.svg" "alt="chapter 8 case study"></a>
+</div>
+
+
+        <div id="feedback" class="card" style="background-color:#818181;">
+            <h2>Leave Us Some Feedback</h2>
+            <form name="feedback">
+                <label for="select">Feedback Type:  </label> <select id="select">
+                <option value ="bug">Bug Report</option>
+                <option value ="suggest">Suggestion</option>
+                <option value="thanks">Thanks</option>
+                <option order="order">order</option>
+                <option value="buisness">buisness</option>
+                </select>
+                <br>
+                <label for="name">Name: </label> <input type="text" id="name">
+                <br>
+                <label for="reply">Email Address: </label> <input type="text" id="reply">
+                <span class='error-message' id='email-error'></span>
+
+                <br>
+                <label for="subject">Subject: </label> <input type="text" id="subject">
+                <br>
+                <label for="message">Message</label><br><textarea id="message" rows="8" cols="50"></textarea><br>
+                <span class='error-message' id='message-error'></span>
+                <br>
+                <button type="button" value="submit" id = "submit">Submit</button>
+                <button type="reset" value="Reset">Reset</button>
+            </form>
+        </div>
+
+
+
+            <footer>
+                Copyright&copy;2020 Alex Hernandez
+            </footer>
+
+</div>
+<script>
+    var sendMessage = new Object();
+    var stringify;
+    var error = true;
+    var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    function createMessage() {
+        var type = document.getElementById("select");
+        var name = document.getElementById("name");
+        var email = document.getElementById("reply");
+        var subject = document.getElementById("subject");
+        var message = document.getElementById("message");
+        if ((type.value !== "") && (name.value !== "") && (email.value !== "") && (subject.value !== "") && (message.value!== "")) {
+            sendMessage = {};
+            if (!emailRegex.test(email.value)) {
+                error = true
+                document.getElementById("email-error").innerHTML = "INVALID EMAIL";
+                sendMessage = {};
+                return
+            } else {
+                sendMessage["email"] = email.value;
+                document.getElementById("email-error").innerHTML = "";
+
+            }
+            sendMessage["name"] = name.value;
+            sendMessage["subject"] = subject.value;
+            sendMessage["type"] = type.value;
+            sendMessage["message"] = message.value;
+            error = false;
+        } else {
+            error = true;
+            sendMessage = {};
+        }
+        console.log(sendMessage);
+
+    }
+    function process() {
+        console.log("processing");
+        if (!error) {
+            document.getElementById("message-error").innerHTML = "";
+            stringify = JSON.stringify(sendMessage);
+            //call php email processor here
+            var xhr = new XMLHttpRequest();
+            var url = "contact.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.email + ", " + json.password);
+                }
+            };
+            xhr.send(stringify);
+            document.getElementById("feedback").reset();
+
+            console.log(stringify);
+        alert("Message Sent");}
+        else {
+            document.getElementById("message-error").innerHTML = "Please Complete All Fields";
+        }
+    }
+    function createListeners(){
+        console.log("listeners");
+        var type = document.getElementById("select");
+        var name = document.getElementById("name");
+        var email = document.getElementById("reply");
+        var subject = document.getElementById("subject");
+        var message = document.getElementById("message");
+        if (type.addEventListener){
+            type.addEventListener("change", createMessage, false);
+            name.addEventListener("change", createMessage, false);
+            email.addEventListener("change", createMessage, false);
+            subject.addEventListener("change", createMessage, false);
+            message.addEventListener("change", createMessage, false);
+        } else if (type.attachEvent) {
+            type.attachEvent("onchange", createMessage);
+            name.attachEvent("onchange", createMessage);
+            email.attachEvent("onchange", createMessage);
+            subject.attachEvent("onchange", createMessage);
+            message.attachEvent("onchange", createMessage);
+        }
+        var button = document.getElementById("submit");
+        if (button.addEventListener) {
+            button.addEventListener("click", process, false);
+        } else if (button.attachEvent) {
+            button.attachEvent("onclick", process);
+        }
+        }
+    if (window.addEventListener) {
+    window.addEventListener('load', createListeners, false); }
+    else if (window.attachEvent){
+    window.attachEvent("onload", ceateListeners);
+    }
+
+</script>
+</body>
+
+</html>

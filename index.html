@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!--
+      JavaScript 6th Edition
+      Chapter 1
+      Individual Case
+
+      Author: Alex Hernandez
+      Date:   11/26/20
+
+      Filename: index.htm
+   -->
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <title>Gameboy Color</title>
+   <link rel="stylesheet" href="styles.css" />
+   <style>
+   
+h1 {text-align: center;}
+
+body {background-color: #8f9ba5;}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #733380;
+  overflow-x: hidden;
+  padding-top: 20px;
+  max-width: 100px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+}
+
+.sidenav a:hover:not(.active) {
+  background-color: white;
+}
+
+.sidenav a.active {
+  background-color: grey;
+}
+
+
+
+
+
+a style {text-align: center;}
+   </style>
+<script src="modernizr.custom.65897.js"></script>
+</head>
+<body>
+  <div id="wrapper">
+   <header>
+      <h1> Gameboy Color</h1>
+   </header>
+   
+<div class="sidenav">
+  <a class="active" href="index.html"><img src="houseicon.svg" "alt="home"></a>
+  <a href="game.html"><img src="gameicon.svg" "alt="game"></a>
+  <a href="play.html"><img src="play.svg" "alt="play"></a>
+  <a href="cart.html"><img src="cart.svg" "alt="cart"></a>
+  <a href="security.html"><img src="security.svg" "alt="sevurity"></a>
+  <a href="ch6.html"><img src="ch6.svg" "alt="chapter 6 case study"></a>
+  <a href="ch7.html"><img src="ch7.svg" "alt="chapter 7 case study"></a>
+  <a href="feedback.html"><img src="feedback.svg" "alt="chapter 8 case study"></a>
+</div>
+
+<main>
+
+ <div class="img-container">
+  <img src="green.jpg" width="100%" max-width="400px" /><span  class="img-attrib">Photo by Thomas Willmott on Unsplash</span>
+</div>
+<p>
+          This website is about the Nintendo Gameboy Color game console.
+          </p>
+          <br><br>
+    <form>
+    <h2> Guest List</h2>
+    <label> Last Name: </label> <input type="text" name="lastname" id="lastname" maxlength="30"  /> <br>
+    <label> Email:</label> <input type="text" name="email" id="email"  /> <br>
+    <input type="submit" onclick="validateLName(); validateEmail();" /> <br>
+    </form>
+            </main>
+            <footer>
+                Copyright&copy;2020 Alex Hernandez
+            </footer>
+            </div>
+<script src="final.js"></script>
+</body>
+</html>
+
+
+<!–– Individual Case Project
+Plan a website containing at least four pages with a common layout and navigation system.
+Note that you’ll add pages to your site in later chapters, so ensure that your navigation system can support additional content.
+Add a script element that links to the modernizr.custom.05819.js file in each HTML document in your website.
+Ensure that all of your web pages pass validation. ––>

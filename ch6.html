@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ch 6</title>
+   <link rel="stylesheet" href="styles.css" />
+<style>
+.noShow {
+  display: none;
+}
+
+#errorMessage{
+  display: none;
+}
+
+p.errorMsg {
+   display: none;
+   color: red;
+}
+
+h1 {text-align: center;}
+
+body {background-color: #8f9ba5;}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #733380;
+  overflow-x: hidden;
+  padding-top: 20px;
+  max-width: 100px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+}
+
+.sidenav a:hover:not(.active) {
+  background-color: white;
+}
+
+.sidenav a.active {
+  background-color: grey;
+}
+
+h2 {font-size: 150%;
+text-align: center;}
+
+
+
+</style>
+
+<script src="modernizr.custom.65897.js"></script>
+
+</head>
+<body>
+<div id="wrapper">
+<div class="sidenav">
+  <a href="index.html"><img src="houseicon.svg" "alt="home"></a>
+  <a href="game.html"><img src="gameicon.svg" "alt="game"></a>
+  <a href="play.html"><img src="play.svg" "alt="play"></a>
+  <a href="cart.html"><img src="cart.svg" "alt="cart"></a>
+  <a href="security.html"><img src="security.svg" "alt="sevurity"></a>
+  <a class="active" href="ch6.html"><img src="ch6.svg" "alt="chapter 6 case study"></a>
+  <a href="ch7.html"><img src="ch7.svg" "alt="chapter 7 case study"></a>
+  <a href="feedback.html"><img src="feedback.svg" "alt="chapter 8 case study"></a>
+</div>
+
+
+
+
+
+<h2>Chapter 6 Case Study</h2>
+
+<p><b>Assignment:</b><br> Add validation the code for one of the forms on your individual website.</p>
+
+
+<div id='errorMessage' class="alert alert-danger" role="alert">
+  Error Messages
+</div>
+
+    <style type="text/css">
+
+    p.errorMsg {
+       display: none;
+       color: red;
+    }
+    </style>
+
+ <form onsubmit="event.preventDefault(); validateCh6Form();">
+  <p>
+    <label for="text-box">Email: </label><br>
+    <input type="text" id="text-box" name="text-box">
+  </p>
+  <p id="textBoxError" class="errorMsg"></p>
+  <p>
+    <label for="select-box">Subject: </label><br>
+    <select id="select-box" name="select-box">
+      <option></option>
+      <option>Post Content</option>
+      <option>Job Opportunity</option>
+      <option>Other</option>
+    </select>
+  </p>
+  <p id="selectBoxError" class="errorMsg"></p>
+  <p>
+    <label for="text-area">Message: </label><br>
+    <textarea id="text-area" name="text-area" rows="10" cols="30"></textarea>
+  </p>
+  <p id="textAreaError" class="errorMsg"></p>
+
+  <p>
+    <input type="submit" value="Contact Me" name="submit-button" id="submit-button">
+  </p>
+</form>
+
+            <footer>
+                Copyright&copy;2020 Alex Hernandez
+            </footer>
+</div>
+
+<script>
+
+  function validateTextBox(){
+    let errorDiv = document.getElementById("textBoxError");
+    let textBox = document.getElementById("text-box");
+    var emailCheck = /^[_\w\-]+(\.[_\w\-]+)*@[\w\-]+(\.[\w\-]+)*(\.[\D]{2,6})$/;
+
+    // validate something
+    try {
+      if(emailCheck.test(textBox.value) === false){
+        throw "Please provide a valide email address";
+
+      }
+      errorDiv.style.display = "none";
+      textBox.style.background = "";
+      return true;
+    } catch(msg) {
+      errorDiv.style.display = "block";
+      errorDiv.innerHTML = msg;
+      textBox.style.background = "rgb(255,233,233)";
+    }
+  }
+
+  function validateTextArea() {
+    let textArea = document.getElementById("text-area");
+    let errorDiv = document.getElementById("textAreaError");
+
+    // validate something
+    try {
+      if(!textArea.value){
+        throw "Please enter a message";
+      } else if (textArea.value.length < 40) {
+        throw "Please enter more than 40 characters";
+      }
+      errorDiv.style.display = "none";
+      textArea.style.background = "";
+      return true;
+    } catch(msg){
+      errorDiv.style.display = "block";
+      errorDiv.innerHTML = msg;
+      textArea.style.background = "rgb(255,233,233)";
+    }
+  }
+
+  function validateSelectBox() {
+    let selectBox = document.getElementById("select-box");
+    let errorDiv = document.getElementById("selectBoxError");
+
+    // validate something
+    try {
+      if(!selectBox.value){
+        throw "Please select a subject";
+      }
+      errorDiv.style.display = "none";
+      selectBox.style.background = "";
+      return true;
+    } catch(msg){
+      errorDiv.style.display = "block";
+      errorDiv.innerHTML = msg;
+      selectBox.style.background = "rgb(255,233,233)";
+    }
+  }
+
+  function validateCh6Form(){
+    let textBox = document.getElementById("text-box");
+    let textArea = document.getElementById("text-area");
+    let selectBox = document.getElementById("select-box");
+
+    if(validateTextBox() && validateTextArea() && validateSelectBox()){
+      alert("Email: " + textBox.value + "\n" + "Subject: " + selectBox.value + "\n" + "Message: " + textArea.value);
+    }
+
+  }
+
+  function createEventListeners(){
+    let textBox = document.getElementById("text-box");
+    if(textBox.addEventListener){
+        textBox.addEventListener("change", validateTextBox);
+    } else if (textBox.attachEvent){
+      // Use attachEvent for older browser support
+      textBox.attachEvent("change", valdiateTextBox);
+    }
+
+    let textArea = document.getElementById("text-area");
+    if(textArea.addEventListener){
+        textArea.addEventListener("change", validateTextArea);
+    } else if (textArea.attachEvent){
+      // Use attachEvent for older browser support
+      textArea.attachEvent("change", validateTextArea);
+    }
+
+    let selectBox = document.getElementById("select-box");
+    if(selectBox.addEventListener){
+        selectBox.addEventListener("change", validateSelectBox);
+    } else if (selectBox.attachEvent){
+      // Use attachEvent for older browser support
+      selectBox.attachEvent("change", validateSelectBox);
+    }
+
+  }
+
+  if (window.addEventListener){
+    window.addEventListener("load", createEventListeners, false);
+  } else if(window.attachEvent){
+    window.attachEvent("onload", createEventListeners);
+  }
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="/static/blog/scripts/script.js"></script>
+<script src="final.js"></script>
+</body>
+</html>
